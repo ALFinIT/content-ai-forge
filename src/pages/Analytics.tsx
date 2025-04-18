@@ -1,7 +1,7 @@
 
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, LineChart, PieChart } from "@/components/ui/chart";
+import { BarChart, LineChart, PieChart } from "@/components/ui/charts";
 import { BarChart2, LineChart as LineIcon, PieChart as PieIcon, ArrowDown, ArrowUp, Filter, Download } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
