@@ -8,8 +8,9 @@ import {
   Check,
   Calendar,
   Clock,
-  HashtagIcon
+  Hash
 } from "lucide-react";
+import HashtagIcon from "@/components/HashtagIcon";
 import { useState } from "react";
 
 interface AISuggestionsProps {
