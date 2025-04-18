@@ -1,4 +1,3 @@
-
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +17,8 @@ import {
   InfoIcon,
   AlertTriangle,
   CheckCircle,
-  PenLine
+  PenLine,
+  Sparkles
 } from "lucide-react";
 import { useState, useRef } from "react";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
@@ -44,6 +44,8 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
+import { generateContent } from "@/services/groq";
+import { GroqSettings } from "@/components/content/GroqSettings";
 
 const NewContent = () => {
   const navigate = useNavigate();
@@ -95,17 +97,13 @@ const NewContent = () => {
   };
 
   const handleApplySuggestion = (suggestion: string) => {
-    // In a real app, this would intelligently apply the suggestion
-    // For now, we'll just append it to the content
     setContent((prev) => prev + "\n\n" + suggestion);
     
-    // Show toast notification
     toast({
       title: "Suggestion Applied",
       description: "The AI suggestion has been added to your content.",
     });
     
-    // Update compliance status
     setComplianceStatus(prev => ({
       ...prev,
       contentQuality: true
@@ -128,10 +126,48 @@ const NewContent = () => {
     navigate("/content");
   };
 
+  const handleGenerateContent = async () => {
+    if (!title || !description) {
+      toast({
+        title: "Missing Information",
+        description: "Please provide a title and description to generate content.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setContent("Generating content...");
+      const generatedContent = await generateContent({
+        title,
+        description,
+        topic: selectedPlatforms.join(", "),
+      });
+      setContent(generatedContent);
+      
+      setComplianceStatus(prev => ({
+        ...prev,
+        contentQuality: true
+      }));
+
+      toast({
+        title: "Content Generated",
+        description: "Your content has been generated successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Generation Failed",
+        description: error instanceof Error ? error.message : "Failed to generate content",
+        variant: "destructive",
+      });
+      setContent("");
+    }
+  };
+
   return (
     <MainLayout>
       <div className="space-y-6">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between gap-4">
           <Button
             variant="ghost"
             size="icon"
@@ -141,11 +177,17 @@ const NewContent = () => {
               <ArrowLeft className="h-5 w-5" />
             </RouterLink>
           </Button>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Create New Content</h1>
-            <p className="text-muted-foreground">
-              Create and schedule content for all your platforms
-            </p>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              onClick={handleGenerateContent}
+              disabled={!title || !description}
+              className="gap-2"
+            >
+              <Sparkles className="h-4 w-4" />
+              Generate with AI
+            </Button>
+            <GroqSettings />
           </div>
         </div>
 
