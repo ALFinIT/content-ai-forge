@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Pencil, Share2, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-interface ContentProps {
+export interface ContentProps {
   id: number;
   title: string;
   description: string;
@@ -74,12 +74,10 @@ const ContentCard = ({ content }: ContentCardProps) => {
       </CardContent>
       
       <CardFooter className="flex justify-end gap-2 pt-0">
-        <Button 
-          variant="outline" 
-          size="sm"
-          asComponent={<Link to={`/content/${content.id}`} />}
-        >
-          {content.status === "draft" ? "Edit" : "View"}
+        <Button variant="outline" size="sm" asChild>
+          <Link to={`/content/${content.id}`}>
+            {content.status === "draft" ? "Edit" : "View"}
+          </Link>
         </Button>
         {content.status === "scheduled" && (
           <Button variant="secondary" size="sm" className="gap-1">

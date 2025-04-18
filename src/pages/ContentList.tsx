@@ -22,7 +22,7 @@ const ContentList = () => {
       description: "Learn the top strategies that can boost your social media presence in 2024.",
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
       platform: "LinkedIn",
-      status: "draft",
+      status: "draft" as const,
       date: "Apr 19, 2025",
     },
     {
@@ -31,7 +31,7 @@ const ContentList = () => {
       description: "We're excited to introduce our latest innovation. Here's what you need to know.",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2070&auto=format&fit=crop",
       platform: "Instagram, Twitter",
-      status: "draft",
+      status: "draft" as const,
       date: "Apr 20, 2025",
     },
   ];
@@ -43,7 +43,7 @@ const ContentList = () => {
       description: "How companies are adapting to the new normal and embracing remote work policies.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
       platform: "LinkedIn, Facebook",
-      status: "scheduled",
+      status: "scheduled" as const,
       date: "Apr 22, 2025",
     },
     {
@@ -52,7 +52,7 @@ const ContentList = () => {
       description: "How our platform helped XYZ Corp increase their engagement by 200%.",
       image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=2071&auto=format&fit=crop",
       platform: "Twitter",
-      status: "scheduled",
+      status: "scheduled" as const,
       date: "Apr 25, 2025",
     },
   ];
@@ -64,7 +64,7 @@ const ContentList = () => {
       description: "Learn how to create content that resonates with your audience and drives engagement.",
       image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=2070&auto=format&fit=crop",
       platform: "All platforms",
-      status: "published",
+      status: "published" as const,
       date: "Apr 15, 2025",
     },
     {
@@ -73,7 +73,7 @@ const ContentList = () => {
       description: "Stay ahead of the curve with these emerging trends in the industry.",
       image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop",
       platform: "LinkedIn, Twitter",
-      status: "published",
+      status: "published" as const,
       date: "Apr 10, 2025",
     },
   ];
@@ -88,9 +88,11 @@ const ContentList = () => {
               Manage all your content in one place
             </p>
           </div>
-          <Button className="gap-2" asComponent={<Link to="/content/new" />}>
-            <BadgePlus className="h-4 w-4" />
-            Create New Content
+          <Button asChild>
+            <Link to="/content/new" className="gap-2">
+              <BadgePlus className="h-4 w-4" />
+              Create New Content
+            </Link>
           </Button>
         </div>
 
@@ -103,7 +105,7 @@ const ContentList = () => {
             />
           </div>
           <Select>
-            <SelectTrigger className="w-full gap-2">
+            <SelectTrigger>
               <Filter className="h-4 w-4" />
               <SelectValue placeholder="Filter by" />
             </SelectTrigger>
@@ -115,8 +117,8 @@ const ContentList = () => {
               <SelectItem value="facebook">Facebook</SelectItem>
             </SelectContent>
           </Select>
-          <Select className="hidden lg:flex">
-            <SelectTrigger className="w-full gap-2">
+          <Select>
+            <SelectTrigger>
               <Calendar className="h-4 w-4" />
               <SelectValue placeholder="Sort by date" />
             </SelectTrigger>
