@@ -1,4 +1,3 @@
-
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,7 +22,6 @@ const Schedule = () => {
     end: endOfMonth(currentMonth),
   });
   
-  // Sample scheduled content data
   const scheduledContent = [
     {
       id: 1,
@@ -93,9 +91,11 @@ const Schedule = () => {
               Plan and manage your content calendar
             </p>
           </div>
-          <Button className="gap-2" asComponent={<Link to="/content/new" />}>
-            <BadgePlus className="h-4 w-4" />
-            Create New Content
+          <Button asChild>
+            <Link to="/content/new" className="gap-2">
+              <BadgePlus className="h-4 w-4" />
+              Create New Content
+            </Link>
           </Button>
         </div>
 

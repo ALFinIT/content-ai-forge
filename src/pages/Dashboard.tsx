@@ -1,4 +1,3 @@
-
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -54,9 +53,11 @@ const Dashboard = () => {
               Overview of your content performance and upcoming schedule
             </p>
           </div>
-          <Button className="gap-2" asComponent={<Link to="/content/new" />}>
-            <BadgePlus className="h-4 w-4" />
-            Create New Content
+          <Button asChild>
+            <Link to="/content/new" className="gap-2">
+              <BadgePlus className="h-4 w-4" />
+              Create New Content
+            </Link>
           </Button>
         </div>
 
@@ -82,92 +83,90 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Content Performance</CardTitle>
-              <CardDescription>
-                Engagement metrics across platforms
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm font-medium">LinkedIn</div>
-                    <div className="text-sm text-muted-foreground">24% engagement</div>
-                  </div>
-                  <Progress value={24} />
+        <Card>
+          <CardHeader>
+            <CardTitle>Content Performance</CardTitle>
+            <CardDescription>
+              Engagement metrics across platforms
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-medium">LinkedIn</div>
+                  <div className="text-sm text-muted-foreground">24% engagement</div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm font-medium">Twitter</div>
-                    <div className="text-sm text-muted-foreground">18% engagement</div>
-                  </div>
-                  <Progress value={18} />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm font-medium">Instagram</div>
-                    <div className="text-sm text-muted-foreground">32% engagement</div>
-                  </div>
-                  <Progress value={32} />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm font-medium">Facebook</div>
-                    <div className="text-sm text-muted-foreground">15% engagement</div>
-                  </div>
-                  <Progress value={15} />
-                </div>
+                <Progress value={24} />
               </div>
-              <Button variant="link" className="mt-6 p-0 h-auto flex items-center gap-1">
-                View detailed analytics
-                <ArrowRight className="h-3 w-3" />
-              </Button>
-            </CardContent>
-          </Card>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-medium">Twitter</div>
+                  <div className="text-sm text-muted-foreground">18% engagement</div>
+                </div>
+                <Progress value={18} />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-medium">Instagram</div>
+                  <div className="text-sm text-muted-foreground">32% engagement</div>
+                </div>
+                <Progress value={32} />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-medium">Facebook</div>
+                  <div className="text-sm text-muted-foreground">15% engagement</div>
+                </div>
+                <Progress value={15} />
+              </div>
+            </div>
+            <Button variant="link" className="mt-6 p-0 h-auto flex items-center gap-1">
+              View detailed analytics
+              <ArrowRight className="h-3 w-3" />
+            </Button>
+          </CardContent>
+        </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Upcoming Content</CardTitle>
-              <CardDescription>
-                Scheduled posts for the next few days
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {upcomingContent.map((content, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center justify-between p-3 rounded-md border"
-                  >
-                    <div>
-                      <p className="font-medium">{content.title}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs bg-muted px-2 py-0.5 rounded-full">{content.platform}</span>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {content.date}
-                        </span>
-                      </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Upcoming Content</CardTitle>
+            <CardDescription>
+              Scheduled posts for the next few days
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {upcomingContent.map((content, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center justify-between p-3 rounded-md border"
+                >
+                  <div>
+                    <p className="font-medium">{content.title}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs bg-muted px-2 py-0.5 rounded-full">{content.platform}</span>
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {content.date}
+                      </span>
                     </div>
-                    <Button variant="ghost" size="icon">
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
                   </div>
-                ))}
-              </div>
-              <Button 
-                variant="outline" 
-                className="w-full mt-6"
-                asComponent={<Link to="/schedule" />}
-              >
-                View Full Schedule
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+                  <Button variant="ghost" size="icon">
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+            <Button 
+              variant="outline" 
+              className="w-full mt-6"
+              asChild
+            >
+              <Link to="/schedule">View Full Schedule</Link>
+            </Button>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
@@ -209,9 +208,9 @@ const Dashboard = () => {
             <Button 
               variant="outline" 
               className="mt-6"
-              asComponent={<Link to="/ai-assistant" />}
+              asChild
             >
-              Get More AI Insights
+              <Link to="/ai-assistant">Get More AI Insights</Link>
             </Button>
           </CardContent>
         </Card>

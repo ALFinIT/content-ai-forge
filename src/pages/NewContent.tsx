@@ -135,9 +135,11 @@ const NewContent = () => {
           <Button
             variant="ghost"
             size="icon"
-            asComponent={<RouterLink to="/content" />}
+            asChild
           >
-            <ArrowLeft className="h-5 w-5" />
+            <RouterLink to="/content">
+              <ArrowLeft className="h-5 w-5" />
+            </RouterLink>
           </Button>
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Create New Content</h1>
