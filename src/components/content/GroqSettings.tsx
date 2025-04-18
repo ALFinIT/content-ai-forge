@@ -29,17 +29,17 @@ export const GroqSettings = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" className="border-[#7E69AB]/20 hover:bg-[#7E69AB]/10">
           <Settings className="h-4 w-4" />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="bg-[#1A1F2C] border-[#7E69AB]/20">
         <SheetHeader>
-          <SheetTitle>Groq API Settings</SheetTitle>
+          <SheetTitle className="text-white">Groq API Settings</SheetTitle>
         </SheetHeader>
         <div className="space-y-4 mt-4">
           <div>
-            <label htmlFor="apiKey" className="text-sm font-medium block mb-2">
+            <label htmlFor="apiKey" className="text-sm font-medium block mb-2 text-gray-300">
               API Key
             </label>
             <Input
@@ -48,13 +48,16 @@ export const GroqSettings = () => {
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="Enter your Groq API key"
-              className="mb-2"
+              className="mb-2 bg-[#7E69AB]/10 border-[#7E69AB]/20 text-white"
             />
             <p className="text-xs text-muted-foreground">
               Your API key is stored securely in your browser's local storage.
             </p>
           </div>
-          <Button onClick={handleSaveApiKey} className="w-full">
+          <Button 
+            onClick={handleSaveApiKey} 
+            className="w-full bg-[#9b87f5] text-[#1A1F2C] hover:bg-[#7E69AB]"
+          >
             Save API Key
           </Button>
         </div>

@@ -5,65 +5,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 262.1 83.3% 57.8%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 262.1 83.3% 57.8%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 225 25% 14%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 225 25% 14%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 225 25% 14%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 260 70% 74%;
+    --primary-foreground: 225 25% 14%;
 
-    --secondary: 262.1 83.3% 57.8%;
+    --secondary: 262 39% 54%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 260 20% 30%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 262.1 83.3% 57.8%;
+    --accent: 262 39% 54%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 217.2 91.2% 59.8%;
+    --border: 260 30% 45%;
+    --input: 260 30% 45%;
+    --ring: 260 70% 74%;
+
+    --radius: 0.5rem;
   }
 }
 
@@ -99,14 +69,16 @@
 }
 
 .preview-box {
-  background-color: #f9f9f9;
+  background-color: rgba(139, 92, 246, 0.05);
   border-radius: var(--radius);
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-stat {
   transition: transform 0.2s ease;
+  background: linear-gradient(to bottom right, rgba(155, 135, 245, 0.1), rgba(110, 89, 165, 0.05));
+  border: 1px solid rgba(126, 105, 171, 0.2);
 }
 
 .dashboard-stat:hover {
@@ -125,3 +97,20 @@
 .loading-pulse {
   animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+.gradient-text {
+  @apply bg-gradient-to-r from-[#9b87f5] to-[#6E59A5] bg-clip-text text-transparent;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-b from-[#1A1F2C] to-[#121420];
+}
+
+.gradient-border {
+  @apply border-[#7E69AB]/30;
+}
+
+.gradient-hover:hover {
+  @apply bg-[#7E69AB]/20;
+}
+
