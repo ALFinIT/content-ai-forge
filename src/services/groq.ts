@@ -25,7 +25,7 @@ Please include:
 Format the response in Markdown format with proper headings (#, ##) and formatting.`;
 
   try {
-    const response = await fetch("https://api.groq.com/v1/completions", {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
@@ -45,7 +45,8 @@ Format the response in Markdown format with proper headings (#, ##) and formatti
     });
 
     if (!response.ok) {
-      throw new Error("Failed to generate content");
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || "Failed to generate content");
     }
 
     const data = await response.json();
